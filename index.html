@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" type="module"></script>
+  <title>Tablero</title>
+</head>
+
+<body>
+  <h1> Juego Tablero</h1>
+
+  <p id="contadorMovimientos">Movimientos: 0</p>
+  <button id="info">Información</button>
+
+  <div id="tablero"></div>
+
+  <div id="menu">
+    <button id="inicio">Inicio</button>
+    <label for="tamañoFicha">Tamaño de la ficha:</label>
+    <select id="tamañoFicha">
+      <option value="pequeña">Pequeña</option>
+      <option value="mediana">Mediana</option>
+      <option value="grande">Grande</option>
+    </select>
+    <label for="tamañoTablero">Tamaño del tablero:</label>
+    <input type="number" id="tamañoTablero" min="1" max="7" value="2">
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-contenido">
+      <span id="cerrarModal" class="cerrar">&times;</span>
+      <p id="textoModal"></p>
+    </div>
+  </div>
+</body>
+
+</html>
