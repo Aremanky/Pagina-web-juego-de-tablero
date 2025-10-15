@@ -4,35 +4,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" type="module"></script>
   <title>Tablero</title>
 </head>
 
 <body>
-  <h1> Juego Tablero</h1>
+  <main>
+    <header>
+      <h1>Juego de Tablero</h1>
+      <div class="panel-info">
+        <p id="contadorMovimientos">Movimientos: 0</p>
+        <p id="temporizador">Tiempo: 0s</p>
+        <button id="info">Información</button>
+      </div>
+    </header>
 
-  <p id="contadorMovimientos">Movimientos: 0</p>
-  <button id="info">Información</button>
+    <div id="tablero"></div>
 
-  <div id="tablero"></div>
-
-  <div id="menu">
-    <button id="inicio">Inicio</button>
-    <label for="tamañoFicha">Tamaño de la ficha:</label>
-    <select id="tamañoFicha">
-      <option value="pequeña">Pequeña</option>
-      <option value="mediana">Mediana</option>
-      <option value="grande">Grande</option>
-    </select>
-    <label for="tamañoTablero">Tamaño del tablero:</label>
-    <input type="number" id="tamañoTablero" min="1" max="7" value="2">
-  </div>
+    <div id="menu" class="panel-controles">
+      <button id="inicio">Inicio</button>
+      <div class="control-grupo">
+        <label for="tamañoFicha">Tamaño de la ficha:</label>
+        <select id="tamañoFicha">
+          <option value="pequeña">Pequeña</option>
+          <option value="mediana" selected>Mediana</option>
+          <option value="grande">Grande</option>
+        </select>
+      </div>
+      <div class="control-grupo">
+        <label for="tamañoTablero">Tamaño del tablero:</label>
+        <input type="number" id="tamañoTablero" min="2" max="7" value="4">
+      </div>
+      <div class="control-grupo">
+        <label for="formaFicha">Forma de la ficha:</label>
+        <select id="formaFicha">
+          <option value="cuadrado">Cuadrado</option>
+          <option value="circulo">Círculo</option>
+        </select>
+      </div>
+    </div>
+  </main>
 
   <div id="modal" class="modal">
     <div class="modal-contenido">
       <span id="cerrarModal" class="cerrar">&times;</span>
-      <p id="textoModal"></p>
+      <div id="textoModal"></div>
     </div>
   </div>
 </body>

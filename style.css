@@ -1,65 +1,245 @@
-/* style.css */
-/* Proyecto Tablero */
-
-.ficha.pequena {
-    width: 40px;
-    height: 40px;
+:root {
+  --color-fondo: #121212;
+  --color-texto: #EAEAEA;
+  --color-primario: #3D9970;
+  --color-primario-hover: #2E8B57;
+  --color-borde: #333;
+  --sombra-caja: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --radio-borde: 8px;
 }
 
-.ficha.mediana {
-    width: 60px;
-    height: 60px;
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  margin: 0;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.ficha.grande {
-    width: 80px;
-    height: 80px;
+main {
+  background: #1E1E1E;
+  padding: 2rem;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-caja);
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: 1rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--color-primario);
+}
+
+.panel-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+#contadorMovimientos,
+#temporizador {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+button {
+  background-color: var(--color-primario);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: var(--color-primario-hover);
+}
+
+#tablero {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 auto;
+  background-color: #282828;
+  padding: 0.5rem;
+  border-radius: var(--radio-borde);
+}
+.panel-controles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: #1E1E1E;
+  border-radius: var(--radio-borde);
+}
+
+.control-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+select,
+input[type="number"] {
+  padding: 0.5rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  font-family: 'Poppins', sans-serif;
+  background-color: #282828;
+  color: var(--color-texto);
+  width: 120px;
 }
 
 .ficha {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    transition: background 0.3s, transform 0.2s;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: grab;
 }
-.ficha:hover {
+
+.ficha.pequena {
+  width: 3rem;
+  height: 3rem;
+}
+
+.ficha.mediana {
+  width: 4rem;
+  height: 4rem;
+}
+
+.ficha.grande {
+  width: 5rem;
+  height: 5rem;
+}
+
+.ficha.circulo {
+  border-radius: 50%;
+}
+
+.ficha.cuadrado {
+  border-radius: var(--radio-borde);
+}
+
+.ficha.inactiva {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.elemento-en-arrastre {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  opacity: 0.8;
+  cursor: grabbing;
+}
+
+.elemento-en-sobrevuelo {
+  outline: 3px dashed var(--color-primario);
+  outline-offset: 4px;
+}
+
+.tablero.victoria .ficha {
+  animation: animacion-victoria 0.5s ease-in-out forwards;
+}
+
+@keyframes animacion-victoria {
+  0% {
+    transform: scale(1);
+  }
+  50% {
     transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .modal {
-  display: none; /* Oculta por defecto */
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5); /* Fondo semi-transparente */
+  background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.modal.visible {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .modal-contenido {
-  background-color: #fefefe;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  margin: auto;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  background-color: #1E1E1E;
+  padding: 2rem;
+  border-radius: var(--radio-borde);
+  max-width: 500px;
+  width: 90%;
+  box-shadow: var(--sombra-caja);
+  text-align: left;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modal.visible .modal-contenido {
+  transform: scale(1);
 }
 
 .cerrar {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
+  line-height: 1;
 }
 
 .cerrar:hover,
 .cerrar:focus {
-  color: black;
+  color: #EAEAEA;
+}
+
+#textoModal h2 {
+  margin-top: 0;
+  color: var(--color-primario);
+}
+
+#textoModal ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+#textoModal p,
+#textoModal li {
+  line-height: 1.6;
 }
